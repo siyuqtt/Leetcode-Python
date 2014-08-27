@@ -1,0 +1,38 @@
+#TLE Python Code
+#ZigZag Conversion https://oj.leetcode.com/problems/zigzag-conversion/
+class Solution:
+    # @return a string
+    def convert(self, s, nRows):
+        if nRows ==1:
+            return s
+        m = []
+        for i in range(nRows):
+            m.append([])
+        i=0
+        while i< len(s):
+            for j in range(nRows):
+                if i<len(s):
+                    m[j].append(s[i])
+                    i+=1
+                else:
+                    break
+            
+            for j in reversed(range(1,nRows-1)):
+                for p in range(nRows):
+                    if i<len(s):
+                        if p!=j:
+                            m[p].append(" ")
+                        else:
+                            m[p].append(s[i])
+                            i+=1
+                    else:
+                        break
+
+        out=""
+        for i in range(len(m)):
+            for j in range(len(m[i])):
+                if m[i][j]==" ":
+                    continue
+                else:
+                    out+=m[i][j]
+        return out
